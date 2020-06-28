@@ -23,7 +23,7 @@ pipeline {
 
     stage("Artifact Upload"){
      // echo "Add steps"  
-      script{
+      steps{
         nexusPublisher nexusInstanceId: 'yacine', nexusRepositoryId: 'devopsdemo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'spring-petclinic', groupId: 'org.springframework.samples', packaging: 'jar', version: '2.4']]]
 
       }
