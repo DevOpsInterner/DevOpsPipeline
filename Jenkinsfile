@@ -36,7 +36,7 @@ pipeline {
         withEnv(['ANSIBLE_DIRECTORY=$ANSIBLE_DIRECTORY/']) {
           sshagent(['610d3050-5b62-4edc-8395-acddb916ec5c']) {
             //sh 'ansible -v webserver -m copy -a "src=dist/ dest=/var/www/html" -i inventory -b'
-            sh 'anisble-playbook -i inventory deploywebapp.yaml'
+            sh 'ansible-playbook -i inventory deploywebapp.yaml'
           }
          }
        }
