@@ -33,12 +33,14 @@ pipeline {
    stage ('Deploy Using Ansible') {
       steps {
         sh 'cp target/*.jar $ANSIBLE_DIRECTORY/dist/'
-        sh 'cd $ANSIBLE_DIRECTORY'
-        sh 'pwd'
        // withEnv(['ANSIBLE_DIRECTORY=$ANSIBLE_DIRECTORY/']) {
           sshagent(['610d3050-5b62-4edc-8395-acddb916ec5c']) {
             //sh 'ansible -v webserver -m copy -a "src=dist/ dest=/var/www/html" -i inventory -b'
-            sh 'ansible-playbook -i inventory deploywebapp.yaml'
+            sh '''
+              cd $ANSIBLE_DIRECTORY
+              pwd
+              ansible-playbook -i inventory deploywebapp.yaml
+            '''
           }
     //     }
        }
